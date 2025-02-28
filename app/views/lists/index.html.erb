@@ -1,7 +1,16 @@
-<h1>My Movie Lists</h1>
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list_path(list) %></li>
-  <% end %>
-</ul>
-<%= link_to "Create a new list", new_list_path, class: "btn btn-primary" %>
+<div class="container">
+  <h1 class="text-white">My Movie Lists</h1>
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4">
+        <div class="movie-list">
+          <h3><%= link_to list.name, list_path(list), class: "text-light" %></h3>
+          <%= link_to "Delete", list_path(list),
+                      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                      class: "btn btn-danger btn-sm btn-custom" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Create a new list", new_list_path, class: "btn btn-primary btn-custom mt-3" %>
+</div>

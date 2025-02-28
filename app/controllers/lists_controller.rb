@@ -18,6 +18,11 @@ class ListsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    def destroy
+      @list = List.find(params[:id])
+      @list.destroy
+      redirect_to lists_path, notice: "List was successfully deleted."
+    end
   end
 
   private
